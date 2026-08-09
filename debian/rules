@@ -18,8 +18,6 @@ override_dh_auto_configure:
 		sh -s -- -y --no-modify-path; \
 	fi
 
-	cargo --version
-
 override_dh_auto_build:
 	cargo build --release --bin autorecord --bin cue_creator
 
