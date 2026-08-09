@@ -1,5 +1,9 @@
 #!/usr/bin/make -f
 
+# Rust build configuration
+export CARGO_HOME = $(CURDIR)/debian/cargo_home
+export RUSTUP_HOME = $(CURDIR)/debian/rustup_home
+
 %:
 	dh $@
 
