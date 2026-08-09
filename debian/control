@@ -2,7 +2,7 @@ Source: hifiberry-autorec
 Section: sound
 Priority: optional
 Maintainer: HiFiBerry <support@hifiberry.com>
-Build-Depends: debhelper (>= 10), cargo, rustc, libpipewire-0.3-dev, pkg-config ca-certificates
+Build-Depends: debhelper (>= 10), curl, libpipewire-0.3-dev, pkg-config, ca-certificates
 Standards-Version: 4.5.0
 Homepage: https://github.com/hifiberry/autorec
 

@@ -3,9 +3,22 @@
 # Rust build configuration
 export CARGO_HOME = $(CURDIR)/debian/cargo_home
 export RUSTUP_HOME = $(CURDIR)/debian/rustup_home
+export PATH := $(CARGO_HOME)/bin:$(PATH)
 
 %:
 	dh $@
+
+override_dh_auto_configure:
+	# Trixie only provides version 1.85, the build needs atleast 1.86, so use rustup install script
+	# to get newest version.
+	if ! which cargo >/dev/null 2>&1; then \
+		mkdir -p $(RUSTUP_HOME) $(CARGO_HOME); \
+		curl https://sh.rustup.rs -sSf | \
+		RUSTUP_HOME=$(RUSTUP_HOME) CARGO_HOME=$(CARGO_HOME) \
+		sh -s -- -y --no-modify-path; \
+	fi
+
+	cargo --version
 
 override_dh_auto_build:
 	cargo build --release --bin autorecord --bin cue_creator
